@@ -8,11 +8,12 @@ import com.java.jigsaw.portfolio.spi.PortfolioServicePort;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class InMemoryPortfolioService implements PortfolioServicePort {
 
 
-    private List<Portfolio> Portfolios = List.of(
+    private List<Portfolio> portfolios = List.of(
             Portfolio.builder().setKey(new PortfolioKey("PTF0001")).setAmount(100).setDevise(Devise.EURO).setManager("Antoine"),
             Portfolio.builder().setKey(new PortfolioKey("PTF0002")).setAmount(10).setDevise(Devise.EURO).setManager("Antoine"),
             Portfolio.builder().setKey(new PortfolioKey("PTF0003")).setAmount(90).setDevise(Devise.EURO).setManager("Antoine"),
@@ -28,12 +29,12 @@ public class InMemoryPortfolioService implements PortfolioServicePort {
 
     @Override
     public List<Portfolio> getPortfolios(int offset, int totalReturnedValue) {
-        return null;
+        return portfolios.subList(offset,offset+totalReturnedValue);
     }
 
     @Override
     public Optional<Portfolio> getPortfolio(PortfolioKey key) {
-        return null;
+        return portfolios.stream().filter(ptf->ptf.equals(key)).findFirst();
     }
 
     @Override
