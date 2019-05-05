@@ -13,7 +13,7 @@
         <module>com.java.jigsaw.portfolio.spi</module>
         <module>com.java.jigsaw.portfolio.app</module>
         <module>com.java.jigsaw.portfolio.api.database</module>
-        <module>com.java.jigsaw.portfolio.api.filesystem</module>
+        <module>com.java.jigsaw.portfolio.api.inmemory</module>
     </modules>
 
     <name>jigsaw-maven</name>
