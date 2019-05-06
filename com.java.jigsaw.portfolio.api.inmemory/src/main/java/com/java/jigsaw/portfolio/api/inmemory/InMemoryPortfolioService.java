@@ -1,14 +1,12 @@
-package com.java.jigsaw.portfolio.api;
+package com.java.jigsaw.portfolio.api.inmemory;
 
 import com.java.jigsaw.portfolio.model.Portfolio;
 import com.java.jigsaw.portfolio.model.PortfolioKey;
 import com.java.jigsaw.portfolio.model.enums.Devise;
 import com.java.jigsaw.portfolio.spi.PortfolioServicePort;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class InMemoryPortfolioService implements PortfolioServicePort {
 
@@ -39,6 +37,6 @@ public class InMemoryPortfolioService implements PortfolioServicePort {
 
     @Override
     public int countPortfolio() {
-        return 0;
+        return portfolios.size();
     }
 }
