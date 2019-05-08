@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>filesystem-api</artifactId>
-
+    <artifactId>inmemory-api</artifactId>
+    <name>portfolio-inmemory-api</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
