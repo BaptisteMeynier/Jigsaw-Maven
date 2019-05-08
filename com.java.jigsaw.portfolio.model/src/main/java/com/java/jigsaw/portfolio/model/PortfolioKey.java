@@ -13,7 +13,14 @@ public class PortfolioKey  {
             return code;
         }
 
-        @Override
+    @Override
+    public String toString() {
+        return "PortfolioKey{" +
+                "code='" + code + '\'' +
+                '}';
+    }
+
+    @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;

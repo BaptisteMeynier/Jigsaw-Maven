@@ -2,6 +2,8 @@ package com.java.jigsaw.portfolio.model;
 
 import com.java.jigsaw.portfolio.model.enums.Devise;
 
+import java.util.Objects;
+
 public class Portfolio {
     private PortfolioKey key;
     private int amount;
@@ -89,6 +91,31 @@ public class Portfolio {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Portfolio portfolio = (Portfolio) o;
+        return amount == portfolio.amount &&
+                Objects.equals(key, portfolio.key) &&
+                devise == portfolio.devise &&
+                Objects.equals(manager, portfolio.manager);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key, amount, devise, manager);
+    }
+
+    @Override
+    public String toString() {
+        return "Portfolio{" +
+                "key=" + key +
+                ", amount=" + amount +
+                ", devise=" + devise +
+                ", manager='" + manager + '\'' +
+                '}';
+    }
 }
 
 
