@@ -16,16 +16,17 @@ public class DatabasePortfolioService implements PortfolioServicePort {
 
     private static final String driver = "org.mariadb.jdbc.Driver";
     private static final String host = "localhost";
+    private static final String port = "3306";
     private static final String user = "root";
     private static final String passwd = "";
-    private static final String url = String.format("jdbc:mariadb://%s:%s/MavenJigsaw?user=%s&password=%s", host, user, passwd);
-    private static final String query = "SELECT code, amount, devise, manager  FROM Portfolio";
+    private static final String url = String.format("jdbc:mariadb://%s:%s/Portfolio?user=%s&password=%s", host, user, passwd);
+    private static final String query = "SELECT CODE,AMOUNT,DEVISE,MANAGER FROM PORTFOLIO";
 
     static {
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
-            System.out.println("Impossible to load driver ");
+            System.out.println("Impossible to load driver");
             e.printStackTrace();
         }
     }
@@ -77,14 +78,13 @@ public class DatabasePortfolioService implements PortfolioServicePort {
                 while (rs.next()) {
                     String code = rs.getString("code");
                     int amount = rs.getInt("amount");
-                    int deviseRank = rs.getInt("devise");
-                    Optional<Devise> devise = Arrays.stream(Devise.values()).filter(dev -> dev.ordinal() == deviseRank).findFirst();
+                    Devise devise = Devise.valueOf(rs.getString("devise"));
                     String manager = rs.getString("manager");
                     portfolios.add(
                             Portfolio.builder()
                                     .setKey(new PortfolioKey(code))
                                     .setAmount(amount)
-                                    .setDevise(devise.orElse(Devise.NONE))
+                                    .setDevise(devise)
                                     .setManager(manager));
                 }
             } catch (SQLException e) {
