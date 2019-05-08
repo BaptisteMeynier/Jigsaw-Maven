@@ -5,10 +5,7 @@ import com.java.jigsaw.portfolio.model.PortfolioKey;
 import com.java.jigsaw.portfolio.model.enums.Devise;
 import com.java.jigsaw.portfolio.spi.PortfolioServicePort;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import java.sql.*;
 
@@ -19,8 +16,9 @@ public class DatabasePortfolioService implements PortfolioServicePort {
     private static final String port = "3306";
     private static final String user = "root";
     private static final String passwd = "";
-    private static final String url = String.format("jdbc:mariadb://%s:%s/Portfolio?user=%s&password=%s", host, user, passwd);
+    private static final String url = String.format("jdbc:mariadb://%s:%s/Portfolio?user=%s&password=%s", host, port, user, passwd);
     private static final String query = "SELECT CODE,AMOUNT,DEVISE,MANAGER FROM PORTFOLIO";
+    private static final String count_query = "SELECT count(CODE) as Total FROM PORTFOLIO";
 
     static {
         try {
@@ -49,27 +47,40 @@ public class DatabasePortfolioService implements PortfolioServicePort {
 
     @Override
     public List<Portfolio> getPortfolios(int offset, int totalReturnedValue) {
-        final String sqlQuery = String.format("%s ORDER BY id ASC LIMIT %i OFFSET %i", totalReturnedValue, offset);
+        final String sqlQuery = String.format("%s ORDER BY id ASC LIMIT %d OFFSET %d", query, totalReturnedValue, offset);
         return fetchPortfolios(sqlQuery);
     }
 
 
     @Override
     public Optional<Portfolio> getPortfolio(PortfolioKey key) {
-        final String sqlQuery = String.format("%s WHERE CODE=%s", key.getCode());
+        final String sqlQuery = String.format("%s WHERE CODE='%s'", query, key.getCode());
         List<Portfolio> portfolios = fetchPortfolios(sqlQuery);
         return (!portfolios.isEmpty()) ? Optional.of(portfolios.get(0)) : Optional.empty();
     }
 
     @Override
     public int countPortfolio() {
-        return fetchPortfolios(query).size();
+        int total = 0;
+        Optional<Connection> connection = getConnection();
+        if (connection.isPresent()) {
+            try (final Connection conn = connection.get();
+                 final Statement stmt = conn.createStatement();
+                 final ResultSet rs = stmt.executeQuery(count_query)
+            ) {
+                rs.next();
+                total = Integer.valueOf(rs.getInt("Total"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return total;
     }
 
 
-    public List<Portfolio> fetchPortfolios(final String sqlQuery) {
+    private List<Portfolio> fetchPortfolios(final String sqlQuery) {
         Optional<Connection> connection = getConnection();
-        List<Portfolio> portfolios = Collections.emptyList();
+        List<Portfolio> portfolios = new ArrayList<>();
         if (connection.isPresent()) {
             try (final Connection conn = connection.get();
                  final Statement stmt = conn.createStatement();

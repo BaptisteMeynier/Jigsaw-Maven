@@ -7,28 +7,27 @@ import com.java.jigsaw.portfolio.spi.PortfolioServicePort;
 
 import java.util.Optional;
 
-/**
- * Hello world!
- *
- */
+
 public class App 
 {
     private static PortfolioServicePort service = new DatabasePortfolioService();
+
     public static void main( String[] args )
     {
         System.out.println( "Welcome to the Portfolio CLI" );
 
-        System.out.println(String.format("There are %i Portfolio(s)", service.countPortfolio()));
-        findPtf("PTF0000");
-        findPtf("PTF0001");
-        findPtf("XXXXXXX");
-        findPtf("PTF9999");
+        System.out.println(String.format("There are %d Portfolio(s)", service.countPortfolio()));
+        findPtf("PTF0000000");
+        findPtf("PTF0000001");
+        findPtf("XXXXXXXXXX");
+        findPtf("PTF0004000");
 
-        service.getPortfolios(0,9999).stream().forEach(ptf-> System.out.println(ptf));
+        System.out.println("Getting first 10 Portfolios:");
+        service.getPortfolios(0,10).stream().forEach(ptf-> System.out.println("    " + ptf));
     }
 
     private static void findPtf(final String ptfCode){
-        System.out.println(String.format("Getting Portfolio %s:",ptfCode));
+        System.out.println(String.format("Trying to get Portfolio %s:",ptfCode));
         Optional<Portfolio> portfolio = service.getPortfolio(new PortfolioKey(ptfCode));
         if(portfolio.isPresent()) {
             System.out.println(portfolio.get());
