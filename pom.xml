@@ -41,9 +41,13 @@
                 <artifactId>maven-jlink-plugin</artifactId>
                 <version>3.0.0-alpha-1</version>
                 <extensions>true</extensions>
-                <configuration>
-                    <!-- configuration elements goes here -->
-                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.ow2.asm</groupId>
+                        <artifactId>asm</artifactId>
+                        <version>7.1</version> <!-- Use newer version of ASM -->
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
