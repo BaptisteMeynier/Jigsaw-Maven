@@ -11,4 +11,5 @@ com.java.jigsaw.portfolio.api.inmemory/target/inmemory-api-1.0-SNAPSHOT.jar:\
 com.java.jigsaw.portfolio.app/target/portfolio-app-1.0-SNAPSHOT.jar \
 --add-modules com.java.jigsaw.portfolio.app \
 --output customJre \
+--bind-services \
 --launcher launch=com.java.jigsaw.portfolio.app/com.java.jigsaw.portfolio.app.App
