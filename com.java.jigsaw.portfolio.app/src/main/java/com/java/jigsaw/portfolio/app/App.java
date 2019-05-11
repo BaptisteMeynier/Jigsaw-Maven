@@ -1,6 +1,5 @@
 package com.java.jigsaw.portfolio.app;
 
-import com.java.jigsaw.portfolio.api.database.DatabasePortfolioService;
 import com.java.jigsaw.portfolio.model.Portfolio;
 import com.java.jigsaw.portfolio.model.PortfolioKey;
 import com.java.jigsaw.portfolio.spi.PortfolioServicePort;
@@ -10,7 +9,7 @@ import java.util.Optional;
 
 public class App 
 {
-    private static PortfolioServicePort service = new DatabasePortfolioService();
+    private static PortfolioServicePort service = PortfolioProvider.getInstance().serviceImpl();
 
     public static void main( String[] args )
     {

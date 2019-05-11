@@ -68,7 +68,7 @@
                     <version>3.8.0</version>
                     <configuration>
                         <release>${version.java}</release>
-                        <compilerArgs>--enable-preview</compilerArgs>
+                        <!--compilerArgs>-enable-preview</compilerArgs-->
                     </configuration>
                 </plugin>
                 <plugin>

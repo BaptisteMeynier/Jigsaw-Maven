@@ -20,7 +20,11 @@ public class InMemoryPortfolioService implements PortfolioServicePort {
             Portfolio.builder().setKey(new PortfolioKey("PTF000006")).setAmount(14).setDevise(Devise.DOLLAR).setManager("Baptiste"),
             Portfolio.builder().setKey(new PortfolioKey("PTF000007")).setAmount(455).setDevise(Devise.DOLLAR).setManager("Baptiste"),
             Portfolio.builder().setKey(new PortfolioKey("PTF000008")).setAmount(900).setDevise(Devise.DOLLAR).setManager("Baptiste"),
-            Portfolio.builder().setKey(new PortfolioKey("PTF000009")).setAmount(75).setDevise(Devise.DOLLAR).setManager("Baptiste")
+            Portfolio.builder().setKey(new PortfolioKey("PTF000009")).setAmount(75).setDevise(Devise.DOLLAR).setManager("Baptiste"),
+            Portfolio.builder().setKey(new PortfolioKey("PTF000010")).setAmount(0).setDevise(Devise.DOLLAR).setManager("Baptiste"),
+            Portfolio.builder().setKey(new PortfolioKey("PTF000011")).setAmount(100).setDevise(Devise.DOLLAR).setManager("Baptiste"),
+            Portfolio.builder().setKey(new PortfolioKey("PTF000012")).setAmount(150).setDevise(Devise.DOLLAR).setManager("Baptiste"),
+            Portfolio.builder().setKey(new PortfolioKey("PTF000013")).setAmount(25).setDevise(Devise.DOLLAR).setManager("Baptiste")
     );
 
     @Override
