@@ -1,5 +1,5 @@
 [baptiste@DESKTOP-FUI7H3K 2.4.1]$ export JAVA_HOME=/home/baptiste/Resources/Jdk/jdk12/latest
-
+[baptiste@DESKTOP-FUI7H3K 2.4.1]$ sudo systemctl start mariadb.service
 
 [baptiste@DESKTOP-FUI7H3K 2.4.1]$ $JAVA_HOME/bin/jar --describe-module --file=mariadb-java-client-2.4.1.jar
 No module descriptor found. Derived automatic module.
