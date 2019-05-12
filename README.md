@@ -1,17 +1,17 @@
-#Jigsaw Maven
+# Jigsaw Maven
 __________________
 
 
 Studying of Jigsaw [JSR 376](https://openjdk.java.net/projects/jigsaw/spec/) modules and its compatibility with Maven.
 
-##Description
+## Description
 __________________
 
 Implementation of a bit complexe application to practice Jigsaw.
 Application is composed of with multiple jigsaw modules and illustrate new service provider interface enhance.
 Two implementations are provided in order to get Portfolios, one from database other directly in memory.
 
-##How compile ?
+## How compile ?
 ___________________
 First, be sure that your JAVA_HOME is set to version >= 9   
 example:
@@ -23,24 +23,24 @@ Compile using maven:
 mvn clean package
 ```
 
-##How launch ?
+## How launch ?
 ___________________
 
-####In memory implementation:
+#### In memory implementation:
 ./inMemory-launcher.sh
 
-####Database implementation:
+#### Database implementation:
 sudo systemctl start mariadb.service  
 ./database-launcher.sh  
 
-##Jlink:
+## Jlink:
 Jlink [JEP 282](https://openjdk.java.net/jeps/282), assemble and optimize a set of modules and their dependencies into a custom runtime image.
-####In memory:
+#### In memory:
 ```   
 ./jlink-inMemory-builder.sh
 ./jlink-inMemory-runner.sh
 ```   
-####Database:
+#### Database:
 For the database version I use org.mariadb.jdbc:mariadb-java-client:2.4.1   
 I can use the following command to get more information about this jar.
 ``` 
@@ -224,14 +224,14 @@ org.mariadb.jdbc
    org.mariadb.jdbc.internal.util.pid.JnaPidFactory$CLibrary -> com.sun.jna.Native                                 not found
 ```
 
-####Other information:
+#### Other information:
 For your old jar you can add an entry in the manifest to define the automatic module name "Automatic-Module-Name:MyModuleName"
 
-###Documentations
+### Documentations
 https://blog.soat.fr/2017/05/java-9-la-revolution-des-modules/
 https://examples.javacodegeeks.com/core-java/java-9-jigsaw-project-tutorial/
 https://openjdk.java.net/projects/jigsaw/spec/sotms/
-###todo
+### todo
 __________________
 see how illustrate jigsaw open feature   
 see if jlink maven plugin is depreciated
